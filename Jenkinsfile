@@ -21,6 +21,7 @@ pipeline{
                 echo "========executing Build========"
                 sh 'whoami'
                 sh 'pwd'
+                sh 'gcc -g -o main.bin hn_repo/main.c'
             }
             post{
                 always{
