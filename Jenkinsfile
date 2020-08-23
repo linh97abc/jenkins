@@ -4,8 +4,8 @@ pipeline{
     agent any
     parameters {
         choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f'], description: 'platform choice')
-        choice(name: 'testcase', choices: ['samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
-        booleanParam(name: 'runtest', defaultValue: false)
+        choice(name: 'testcase', choices: ['all','samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
+        choice(name: 'mode', choices: ['build', 'run'])
         string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
     }
     stages{
@@ -43,6 +43,7 @@ pipeline{
     post{
         always{
             archiveArtifacts artifacts:'main.bin,.west/*', fingerprint: true
+            // archiveArtifacts artifacts:'sanity-out/*.csv,sanity-out/*.log,report/*.zip', fingerprint: true
             // junit '.west/*'
         }
         success{

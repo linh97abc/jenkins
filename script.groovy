@@ -26,16 +26,19 @@ def west_init() {
 
 def build() {
     echo "========executing Build========"
-    echo "platform ${params.platform}"
-    echo "jenkin: ${params.JENKINS_HOME}"
-    echo "jenkin: ${JENKINS_HOME}"
-    sh 'whoami'
-    sh 'pwd'
+    // sh 'rm -rf sanity-out*'
     sh 'gcc -g -o main.bin modules/hal/cmsis/main.c'
+
+    sh "chmod +x sanitycheck.sh"
+    sh "./sanitycheck.sh --print ${params.platform}"
+    // sh "./sanitycheck.sh -p ${params.platform} -T ${params.testcase} -m ${params.mode} -d ${params.device_serial}"
 }
 
 def artifact() {
     echo "===============artifact====================="
+    // sh "rm -rf report"
+    // sh "mkdir -p report"
+    // sh "zip -r report/_.zip sanity-out"
 }
 
 return this
