@@ -19,6 +19,7 @@ pipeline{
         }
         stage("Build"){            
             steps{
+                echo 'jenkin home: ${JENKINS_HOME}'
                 script {
                     gv.build()
                 }

@@ -28,6 +28,7 @@ def build() {
     echo "========executing Build========"
     echo "platform ${params.platform}"
     echo "jenkin: ${params.JENKINS_HOME}"
+    echo "jenkin: ${JENKINS_HOME}"
     sh 'whoami'
     sh 'pwd'
     sh 'gcc -g -o main.bin hn_repo/main.c'
