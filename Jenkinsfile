@@ -8,7 +8,7 @@ pipeline{
     }
     stages{
         stage("Preparation"){
-            git 'https://github.com/linh97abc/HN20_FR_EMB_02.git'
+            git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git'
         }
         stage("Build"){            
             steps{
