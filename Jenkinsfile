@@ -3,13 +3,10 @@ def gv
 pipeline{
     agent any
     parameters {
-        // choice(name: 'platform', choices: ['frdm_k64f'], description: 'platform choice')
-        // choice(name: 'testcase', choices: ['samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
-        // booleanParam(name: 'runtest', defaultValue: false)
-        // string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
-        script {
-            gv.params()
-        }
+        choice(name: 'platform', choices: ['frdm_k64f'], description: 'platform choice')
+        choice(name: 'testcase', choices: ['samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
+        booleanParam(name: 'runtest', defaultValue: false)
+        string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
     }
     stages{
         stage("init"){
