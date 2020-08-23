@@ -1,8 +1,10 @@
 pipeline{
     agent any
     parameters {
-        string(name: 'serial', defaultValue: 'tty', description: 'serial line')
-        choice(name: 'platform', choices: ['frdm_k64f', 's32'], description: 'platform choice')
+        choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f',], description: 'platform choice')
+        choice(name: 'testcase', choices: ['samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
+        boolean(name: 'runtest', defaultValues: false)
+        string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
     }
     stages{
         stage("Buil"){
