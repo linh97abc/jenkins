@@ -13,9 +13,8 @@ pipeline{
             steps{
                 script{
                     gv = load "script.groovy"
-                }
-
-                gv.west_init()
+                    gv.west_init()
+                }                
 
                 // sh 'mkdir -p modules/hal/cmsis'
                 // dir('modules/hal/cmsis'){                    
@@ -44,7 +43,9 @@ pipeline{
         }
         stage("Build"){            
             steps{
-                gv.build()
+                script {
+                    gv.build()
+                }
             }
             post{
                 always{
