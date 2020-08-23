@@ -14,25 +14,7 @@ pipeline{
                 script{
                     gv = load "script.groovy"
                     gv.west_init()
-                }                
-
-                // dir('modules/hal/cmsis'){                    
-                //     git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
-                //     // credentialsId: 'aaa',
-                //     branch: 'master'
-                // }
-
-                // dir('modules/hal/nxp'){
-                //     git url: 'https://github.com/linh97abc/test.git',
-                //     // credentialsId: 'aaa',
-                //     branch: 'master'
-                // } 
-
-                // dir('zephyr'){
-                //     git url: 'https://github.com/linh97abc/test.git',
-                //     // credentialsId: 'aaa',
-                //     branch: 'master'
-                // }
+                }
             }   
         }
         stage("Build"){            
