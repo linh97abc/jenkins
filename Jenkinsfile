@@ -7,36 +7,42 @@ pipeline{
         string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
     }
     stages{
-        stage("Preparation"){
+        stage("init"){
             steps{
-                sh 'mkdir -p modules/hal/cmsis'
-                dir('modules/hal/cmsis'){                    
-                    git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
-                    branch: 'b1'
+                script{
+                    gv = load "script.groovy"
                 }
 
-                sh 'mkdir -p modules/hal/nxp'
-                dir('modules/hal/nxp'){
-                    git url: 'https://github.com/linh97abc/test.git',
-                    branch: 'master'
-                } 
+                gv.west_init()
 
-                sh 'mkdir -p zephyr'
-                dir('zephyr'){
-                    git url: 'https://github.com/linh97abc/test.git',
-                    branch: 'master'
-                }
+                // sh 'mkdir -p modules/hal/cmsis'
+                // dir('modules/hal/cmsis'){                    
+                //     git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
+                //     branch: 'master',
+                //     // credentialsId: 'aaa'
+                // }
 
-                sh 'mkdir -p .west'
-                sh 'echo \"[manifest]\\r\\npath=zephyr\\r\\n[zephyr]\\r\\nbase=zephyr\">.west/config'
+                // sh 'mkdir -p modules/hal/nxp'
+                // dir('modules/hal/nxp'){
+                //     git url: 'https://github.com/linh97abc/test.git',
+                //     branch: 'master',
+                //     // credentialsId: 'aaa'
+                // } 
+
+                // sh 'mkdir -p zephyr'
+                // dir('zephyr'){
+                //     git url: 'https://github.com/linh97abc/test.git',
+                //     branch: 'master',
+                //     // credentialsId: 'aaa'
+                // }
+
+                // sh 'mkdir -p .west'
+                // sh 'echo \"[manifest]\\r\\npath=zephyr\\r\\n[zephyr]\\r\\nbase=zephyr\">.west/config'
             }   
         }
         stage("Build"){            
             steps{
-                echo "========executing Build========"
-                sh 'whoami'
-                sh 'pwd'
-                sh 'gcc -g -o main.bin hn_repo/main.c'
+                gv.build()
             }
             post{
                 always{
