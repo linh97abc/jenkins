@@ -3,7 +3,7 @@ pipeline{
     parameters {
         choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f',], description: 'platform choice')
         choice(name: 'testcase', choices: ['samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
-        booleanParam(name: 'runtest', defaultValues: false)
+        booleanParam(name: 'runtest', defaultValue: false)
         string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
     }
     stages{
