@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    parameters {
+        string(name: 'serial', defaultValue: 'tty', description: 'serial line')
+        choice(name: 'platform', choices: ['frdm_k64f', 's32'], description: 'platform choice')
+    }
     stages{
         stage("Buil"){
             steps{
