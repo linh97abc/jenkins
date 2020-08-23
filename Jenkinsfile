@@ -13,6 +13,11 @@ pipeline{
                 dir('hn_repo'){                    
                     git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
                     branch: 'b1'
+                }
+                sh 'mkdir -p dir2/repo'
+                dir('dir2/repo'){
+                    git url: 'https://github.com/linh97abc/test.git',
+                    branch: 'master'
                 } 
             }   
         }
