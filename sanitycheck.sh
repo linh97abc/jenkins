@@ -46,6 +46,7 @@ while [ "$1" != "" ]; do
                                  ;;
          --print )               shift
                                  echo $1
+                                 exit
                                  ;;
          * )                     helpFunction
                                  exit 1
