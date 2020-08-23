@@ -11,8 +11,8 @@ pipeline{
             steps{
                 sh 'mkdir -p hn_repo'
                 dir('hn_repo'){                    
-                    git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git'
-                    // branch: 'master'
+                    git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
+                    branch: 'master'
                 } 
             }   
         }
