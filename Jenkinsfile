@@ -16,29 +16,23 @@ pipeline{
                     gv.west_init()
                 }                
 
-                // sh 'mkdir -p modules/hal/cmsis'
-                dir('modules/hal/cmsis'){                    
-                    git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
-                    // credentialsId: 'aaa',
-                    branch: 'master'
-                }
+                // dir('modules/hal/cmsis'){                    
+                //     git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
+                //     // credentialsId: 'aaa',
+                //     branch: 'master'
+                // }
 
-                // sh 'mkdir -p modules/hal/nxp'
-                dir('modules/hal/nxp'){
-                    git url: 'https://github.com/linh97abc/test.git',
-                    // credentialsId: 'aaa',
-                    branch: 'master'
-                } 
+                // dir('modules/hal/nxp'){
+                //     git url: 'https://github.com/linh97abc/test.git',
+                //     // credentialsId: 'aaa',
+                //     branch: 'master'
+                // } 
 
-                // sh 'mkdir -p zephyr'
-                dir('zephyr'){
-                    git url: 'https://github.com/linh97abc/test.git',
-                    // credentialsId: 'aaa',
-                    branch: 'master'
-                }
-
-                // sh 'mkdir -p .west'
-                // sh 'echo \"[manifest]\\r\\npath=zephyr\\r\\n[zephyr]\\r\\nbase=zephyr\">.west/config'
+                // dir('zephyr'){
+                //     git url: 'https://github.com/linh97abc/test.git',
+                //     // credentialsId: 'aaa',
+                //     branch: 'master'
+                // }
             }   
         }
         stage("Build"){            
