@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage("A"){
+        stage("Buil"){
             steps{
                 echo "========executing A========"
             }
@@ -15,6 +15,23 @@ pipeline{
                 failure{
                     echo "========A execution failed========"
                 }
+            }
+        }
+        stage("Run"){
+            steps{
+                echo "====++++executing Run++++===="
+            }
+            post{
+                always{
+                    echo "====++++always++++===="
+                }
+                success{
+                    echo "====++++Run executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Run execution failed++++===="
+                }
+        
             }
         }
     }
