@@ -10,8 +10,8 @@ pipeline{
         stage("Build"){
             steps{
                 echo "========executing Build========"
-                whoami
-                pwd
+                sh 'whoami'
+                sh 'pwd'
             }
             post{
                 always{
