@@ -31,7 +31,11 @@ def build() {
     echo "jenkin: ${JENKINS_HOME}"
     sh 'whoami'
     sh 'pwd'
-    sh 'gcc -g -o main.bin hn_repo/main.c'
+    sh 'gcc -g -o main.bin modules/hal/cmsis/main.c'
+}
+
+def artifact() {
+    echo "===============artifact====================="
 }
 
 return this

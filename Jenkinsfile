@@ -3,7 +3,7 @@ def gv
 pipeline{
     agent any
     parameters {
-        choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f',], description: 'platform choice')
+        choice(name: 'platform', choices: ['frdm_k64f'], description: 'platform choice')
         choice(name: 'testcase', choices: ['samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
         booleanParam(name: 'runtest', defaultValue: false)
         string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
@@ -25,23 +25,9 @@ pipeline{
             }
             post{
                 always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========Build executed successfully========"
-                }
-                failure{
-                    echo "========Build execution failed========"
-                }
-            }
-        }
-        stage("Run"){
-            steps{
-                echo "====++++executing Run++++===="
-            }
-            post{
-                always{
-                    echo "====++++always++++===="
+                    script {
+                        gv.artifact()
+                    }
                 }
                 success{
                     echo "====++++Run executed successfully++++===="
@@ -53,9 +39,11 @@ pipeline{
             }
         }
     }
+
     post{
         always{
-            echo "========always========"
+            archiveArtifacts artifacts:'main.bin,.west/*', fingerprint: true
+            // junit '.west/*'
         }
         success{
             echo "========pipeline executed successfully ========"
