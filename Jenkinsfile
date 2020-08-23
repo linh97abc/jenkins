@@ -19,22 +19,22 @@ pipeline{
                 // sh 'mkdir -p modules/hal/cmsis'
                 dir('modules/hal/cmsis'){                    
                     git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git',
-                    branch: 'master',
-                    // credentialsId: 'aaa'
+                    // credentialsId: 'aaa',
+                    branch: 'master'
                 }
 
                 // sh 'mkdir -p modules/hal/nxp'
                 dir('modules/hal/nxp'){
                     git url: 'https://github.com/linh97abc/test.git',
-                    branch: 'master',
-                    // credentialsId: 'aaa'
+                    // credentialsId: 'aaa',
+                    branch: 'master'
                 } 
 
                 // sh 'mkdir -p zephyr'
                 dir('zephyr'){
                     git url: 'https://github.com/linh97abc/test.git',
-                    branch: 'master',
-                    // credentialsId: 'aaa'
+                    // credentialsId: 'aaa',
+                    branch: 'master'
                 }
 
                 // sh 'mkdir -p .west'
