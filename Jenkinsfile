@@ -8,10 +8,13 @@ pipeline{
     }
     stages{
         stage("Preparation"){
-            dir('hn_repo')
-            {
-                git url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git'
-            }            
+            steps{
+                sh 'mkdir -p hn_repo'
+                dir('hn_repo'){
+                    git branch: 'master'
+                    url: 'https://github.com/linh97abc/HN20_FR_EMB_02.git'
+                } 
+            }   
         }
         stage("Build"){            
             steps{
