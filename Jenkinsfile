@@ -56,8 +56,8 @@ pipeline{
     post{
         always{
             echo "========always========"
-            archiveArtifacts artifacts:'main.bin', fingerprint: true
-            junit '.west/*'
+            archiveArtifacts artifacts:'main.bin,.west/*', fingerprint: true
+            // junit '.west/*'
         }
         success{
             echo "========pipeline executed successfully ========"
