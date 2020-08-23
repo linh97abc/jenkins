@@ -7,19 +7,21 @@ pipeline{
         string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
     }
     stages{
-        stage("Buil"){
+        stage("Build"){
             steps{
-                echo "========executing A========"
+                echo "========executing Build========"
+                whoami
+                pwd
             }
             post{
                 always{
                     echo "========always========"
                 }
                 success{
-                    echo "========A executed successfully========"
+                    echo "========Build executed successfully========"
                 }
                 failure{
-                    echo "========A execution failed========"
+                    echo "========Build execution failed========"
                 }
             }
         }
