@@ -7,7 +7,10 @@ pipeline{
         string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
     }
     stages{
-        stage("Build"){
+        stage("Preparation"){
+            git 'https://github.com/linh97abc/HN20_FR_EMB_02.git'
+        }
+        stage("Build"){            
             steps{
                 echo "========executing Build========"
                 sh 'whoami'
