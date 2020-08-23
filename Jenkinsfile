@@ -57,7 +57,7 @@ pipeline{
         always{
             echo "========always========"
             archiveArtifacts artifacts:'main.bin', fingerprint: true
-            junit 'modules/hal/cmsis/*'
+            // junit 'modules/hal/cmsis/*'
         }
         success{
             echo "========pipeline executed successfully ========"
