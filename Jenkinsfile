@@ -1,13 +1,20 @@
 def gv
 
+parameters ([
+        choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f'], description: 'platform choice'),
+        choice(name: 'testcase', choices: ['all','samples', 'tests/kernel','tests/drivers','tests/ztest/base']),
+        choice(name: 'mode', choices: ['build', 'run']),
+        string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
+    ])
+
 pipeline{
     agent any
-    parameters {
-        choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f'], description: 'platform choice')
-        choice(name: 'testcase', choices: ['all','samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
-        choice(name: 'mode', choices: ['build', 'run'])
-        string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
-    }
+    // parameters {
+    //     choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f'], description: 'platform choice')
+    //     choice(name: 'testcase', choices: ['all','samples', 'tests/kernel','tests/drivers','tests/ztest/base'])
+    //     choice(name: 'mode', choices: ['build', 'run'])
+    //     string(name: 'serial', defaultValue: 'ttyACM0', description: 'serial line')
+    // }
     stages{
         stage("init"){
             steps{
