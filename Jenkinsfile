@@ -85,10 +85,10 @@
 node {
     checkout scm
 
-    def job = load "script.groovy"
+    def gv = load "script.groovy"
     properties(
         [
-            parameters(job.getParams()),
+            parameters(gv.getParams()),
         ]
     )
     // stage('Example') {
