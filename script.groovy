@@ -36,6 +36,7 @@ def build() {
 
 def artifact() {
     echo "===============artifact====================="
+    echo "job: ${JOB_NAME}"
     // sh "rm -rf report"
     // sh "mkdir -p report"
     // sh "zip -r report/_.zip sanity-out"
