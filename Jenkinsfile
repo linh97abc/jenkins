@@ -76,7 +76,7 @@ node {
     def job = load "script.groovy"
     properties(
         [
-            parameters(job.getparam()),
+            parameters(job.getParams()),
         ]
     )
     stage('Example') {
