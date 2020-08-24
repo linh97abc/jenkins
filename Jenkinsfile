@@ -102,19 +102,19 @@ node {
     // }
      
         stage("init"){
-            steps{
+            
                 script{
                     gv = load "script.groovy"
                     gv.west_init()
                 }
-            }   
+            
         }
         stage("Build"){            
-            steps{
+        
                 script {
                     gv.build()
                 }
-            }
+            
             post{
                 always{
                     script {
