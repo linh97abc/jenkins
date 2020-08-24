@@ -76,7 +76,11 @@ node {
     def job = load "script.groovy"
     properties(
         [
-            parameters(job.getparam()),
+            parameters([
+        choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f'], description: 'platform choice'),
+        choice(name: 'testcase', choices: ['all','samples', 'tests/kernel','tests/drivers','tests/ztest/base']),
+        choice(name: 'mode', choices: ['build', 'run'])
+    ]),
         ]
     )
     stage('Example') {
