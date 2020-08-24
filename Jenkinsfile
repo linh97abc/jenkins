@@ -100,7 +100,7 @@ node {
     //     sh 'ls'
     //     sh 'pwd'
     // }
-     stages{
+     
         stage("init"){
             steps{
                 script{
@@ -130,7 +130,7 @@ node {
         
             }
         }
-    }
+    
 
     post{
         always{
