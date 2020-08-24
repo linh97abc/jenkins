@@ -73,6 +73,12 @@
 // }
 
 node {
+    def job = load "script.groovy"
+    properties(
+        [
+            parameters(job.getparam()),
+        ]
+    )
     stage('Example') {
         echo 'I only execute on the master branch'
         echo 'I execute elsewhere'
