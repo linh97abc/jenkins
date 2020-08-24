@@ -85,6 +85,7 @@ node {
         // script{
         //     job.artifact()
         // }
-        
+        sh 'ls'
+        sh 'pwd'
     }
 }
