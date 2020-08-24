@@ -73,7 +73,7 @@
 // }
 
 node {
-    def job = load "script.groovy"
+    // def job = load "script.groovy"
     // properties(
     //     [
     //         parameters(job.getParams()),
@@ -82,9 +82,9 @@ node {
     stage('Example') {
         echo 'I only execute on the master branch'
         echo 'I execute elsewhere'
-        script{
-            job.artifact()
-        }
+        // script{
+        //     job.artifact()
+        // }
         
     }
 }
