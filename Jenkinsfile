@@ -1,10 +1,20 @@
 def gv
 
-parameters ([
+node{
+    properties(
+        parameters([
         choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f'], description: 'platform choice'),
         choice(name: 'testcase', choices: ['all','samples', 'tests/kernel','tests/drivers','tests/ztest/base']),
         choice(name: 'mode', choices: ['build', 'run'])
-    ])
+        ])
+    )
+}
+
+// parameters ([
+//         choice(name: 'platform', choices: ['s32r45_cortex_m7','s32r45_cortex_a53','frdm_k64f'], description: 'platform choice'),
+//         choice(name: 'testcase', choices: ['all','samples', 'tests/kernel','tests/drivers','tests/ztest/base']),
+//         choice(name: 'mode', choices: ['build', 'run'])
+//     ])
 
 pipeline{
     agent any
