@@ -28,7 +28,7 @@ def build() {
     echo "========executing Build========"
     // sh 'rm -rf sanity-out*'
     sh 'gcc -g -o main.bin modules/hal/cmsis/main.c'
-
+    sh "ls"
     sh "chmod +x sanitycheck.sh"
     sh "./sanitycheck.sh --print ${params.platform}"
     // sh "./sanitycheck.sh -p ${params.platform} -T ${params.testcase} -m ${params.mode} -d ${params.device_serial}"
