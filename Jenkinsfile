@@ -84,20 +84,66 @@
 // }
 node {
     checkout scm
-    
+
     def job = load "script.groovy"
     properties(
         [
             parameters(job.getParams()),
         ]
     )
-    stage('Example') {
-        echo 'I only execute on the master branch'
-        echo 'I execute elsewhere'
-        script{
-            job.artifact()
+    // stage('Example') {
+    //     echo 'I only execute on the master branch'
+    //     echo 'I execute elsewhere'
+    //     script{
+    //         job.artifact()
+    //     }
+    //     sh 'ls'
+    //     sh 'pwd'
+    // }
+     stages{
+        stage("init"){
+            steps{
+                script{
+                    gv = load "script.groovy"
+                    gv.west_init()
+                }
+            }   
         }
-        sh 'ls'
-        sh 'pwd'
+        stage("Build"){            
+            steps{
+                script {
+                    gv.build()
+                }
+            }
+            post{
+                always{
+                    script {
+                        gv.artifact()
+                    }
+                }
+                success{
+                    echo "====++++Run executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Run execution failed++++===="
+                }
+        
+            }
+        }
+    }
+
+    post{
+        always{
+            archiveArtifacts artifacts:'main.bin,.west/*', fingerprint: true
+            // archiveArtifacts artifacts:'sanity-out/*.csv,sanity-out/*.log,report/*.zip', fingerprint: true
+            // junit '.west/*'
+            echo "job: ${JOB_NAME}"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
     }
 }
