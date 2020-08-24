@@ -72,30 +72,32 @@
 //     }
 // }
 
-pipeline{
-    agent any
-    stages{
-        stage("init"){
-            steps{
-                echo "init"
-            }   
-        }
-    }
-}
-// node {
-//     // def job = load "script.groovy"
-//     // properties(
-//     //     [
-//     //         parameters(job.getParams()),
-//     //     ]
-//     // )
-//     stage('Example') {
-//         echo 'I only execute on the master branch'
-//         echo 'I execute elsewhere'
-//         // script{
-//         //     job.artifact()
-//         // }
-//         sh 'ls'
-//         sh 'pwd'
+// pipeline{
+//     agent any
+//     stages{
+//         stage("init"){
+//             steps{
+//                 echo "init"
+//             }   
+//         }
 //     }
 // }
+node {
+    checkout scm
+    
+    def job = load "script.groovy"
+    properties(
+        [
+            parameters(job.getParams()),
+        ]
+    )
+    stage('Example') {
+        echo 'I only execute on the master branch'
+        echo 'I execute elsewhere'
+        script{
+            job.artifact()
+        }
+        sh 'ls'
+        sh 'pwd'
+    }
+}
